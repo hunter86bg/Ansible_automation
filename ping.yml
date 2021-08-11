@@ -1,0 +1,9 @@
+#ping azure vm's
+---
+- name: Healthcheck
+  hosts: inventory
+  
+  tasks:
+  - name: gather hosts facts
+    package_facts:
+      manager: auto

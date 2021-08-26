@@ -1,4 +1,4 @@
 ---
 - name: update yum
-  hosts: all_hosts_group
+  hosts: ICAZCLDGITENT01
   yum: name=* state=latest

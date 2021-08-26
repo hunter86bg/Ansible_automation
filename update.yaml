@@ -1,3 +1,4 @@
 ---
 - name: update yum
+  hosts: all
   yum: name=* state=latest

@@ -1,7 +1,7 @@
 plugin: azure.azcollection.azure_rm
 auth_source: auto
 include_vm_resource_groups:
-  - '*'
+  - IC-RG-Ansible_towertestvm
 plain_host_names: yes
 exclude_host_filters:
 - powerstate != 'running'

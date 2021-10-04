@@ -9,7 +9,7 @@
   #  RG_CREATION: 'DEMO_RG'
     
   tasks:
-  -name:  Create DEMO Resource Group
+  - name:  Create DEMO Resource Group
     azure_rm_resourcegroup:
       name: "{{ RG_CREATION }}"
       location: 'eastus'
@@ -18,7 +18,7 @@
         in_production: False
     when: RG_CREATION is defined
      
-  -name: Destroy DEMO2 Resource Group
+  - name: Destroy DEMO2 Resource Group
     azure_rm_resourcegroup:
       name: "{{ RG_DELETION }}"
       state: absent

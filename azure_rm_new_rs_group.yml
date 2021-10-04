@@ -1,0 +1,19 @@
+---
+- name: Create a new azure group
+  hosts: localhost
+  connection: local
+  become: False
+  tasks:
+  - Create DEMO Resource Group
+    azure_rm_resourcegroup:
+      name: 'DEMO_RG'
+      location: 'eastus'
+      tags:
+        provider: 'Ansible'
+        in_production: False
+     
+  - Destroy DEMO2 Resource Group
+    azure_rm_resourcegroup:
+      name: 'DEMO2'
+      state: absent
+      force_delete_nonempty: yes

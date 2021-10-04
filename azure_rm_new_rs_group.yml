@@ -15,7 +15,7 @@
       location: 'eastus'
       tags:
         provider: 'Ansible'
-        in_production: False
+        in_production: "False"
     when: RG_CREATION is defined
      
   - name: Destroy DEMO2 Resource Group

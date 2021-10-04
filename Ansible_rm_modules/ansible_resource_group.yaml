@@ -1,6 +1,6 @@
 ---
 
-- hosts: localhost
+- hosts: all
   tasks:
   - name: Creating Resource group in Azure
     azure_rm_resourcegroup:

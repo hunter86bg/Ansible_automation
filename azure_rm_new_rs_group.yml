@@ -3,6 +3,7 @@
   hosts: localhost
   connection: local
   become: False
+  gather_facts: False
   vars:
   #  RG_DELETION: 'DEMO2'
   #  RG_CREATION: 'DEMO_RG'

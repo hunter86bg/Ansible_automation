@@ -1,7 +1,7 @@
 plugin: azure.azcollection.azure_rm
-auth_source: auto
-include_vm_resource_groups:
-  - '*'
+auth_source: env
+#include_vm_resource_groups:
+#  - '*'
 plain_host_names: yes
 exclude_host_filters:
 - powerstate != 'running'
@@ -12,3 +12,5 @@ keyed_groups:
   key: location
 hostvar_expressions:
   ansible_host: (public_dns_hostnames + private_ipv4_addresses) | first
+conditional_groups:
+  all_hosts_group: true

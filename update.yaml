@@ -4,6 +4,6 @@
   become: True
   tasks:
   - name: Update VMs
-    packages: 
+    package: 
       name: '*'
       state: 'latest'

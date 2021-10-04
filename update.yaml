@@ -4,6 +4,6 @@
   become: True
   tasks:
   - name: Update VMs
-    yum: 
+    packages: 
       name: '*'
       state: 'latest'

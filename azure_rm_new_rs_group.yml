@@ -3,17 +3,23 @@
   hosts: localhost
   connection: local
   become: False
+  vars:
+  #  RG_DELETION: 'DEMO2'
+  #  RG_CREATION: 'DEMO_RG'
+    
   tasks:
   - Create DEMO Resource Group
     azure_rm_resourcegroup:
-      name: 'DEMO_RG'
+      name: "{{ RG_CREATION }}"
       location: 'eastus'
       tags:
         provider: 'Ansible'
         in_production: False
+    when: RG_CREATION is defined
      
   - Destroy DEMO2 Resource Group
     azure_rm_resourcegroup:
-      name: 'DEMO2'
+      name: "{{ RG_DELETION }}"
       state: absent
       force_delete_nonempty: yes
+    when: RG_DELETION is defined

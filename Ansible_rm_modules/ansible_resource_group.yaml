@@ -1,8 +1,10 @@
 ---
-
-- hosts: all
+- name: Create a resource group
+  hosts: localhost
+  connection: local
+  gather_facts: no
   tasks:
-  - name: Creating Resource group in Azure
-    azure_rm_resourcegroup:
-      name: IC-RG-FASIMOHAMMED
-      location: East US
+    - name: Create a resource group
+      azure_rm_resourcegroup:
+        name: IC-RG-FASI
+        location: eastus

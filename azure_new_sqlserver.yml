@@ -11,6 +11,6 @@
       resource_group: "{{ item.rg }}"
       name: "{{ item.name }}"
       location: "{{ item.location | default(omit) }}"
-      admin_username: "{{ item.credentials.username }}"
-      admin_password: "{{ item.credentials.password }}"
+      admin_username: "{{ item.credentials.username | default(omit) }}"
+      admin_password: "{{ item.credentials.password | default(omit) }}"
     loop: "{{ azure_sql_servers }}"

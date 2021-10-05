@@ -4,23 +4,20 @@
   connection: local
   become: False
   gather_facts: False
-  vars:
-  #  RG_DELETION: 'DEMO2'
-  #  RG_CREATION: 'DEMO_RG'
+#  vars:
+#    RGs:
+#    - name: "DEMO_RG"
+#      location: "eastus"    
+#    - name: "DEMO2"
+#      state: "absent"
+#      forcedelete: "yes"
     
   tasks:
-  - name:  Create DEMO Resource Group
+  - name: Create/Update/Delete Azure RD
     azure_rm_resourcegroup:
-      name: "{{ RG_CREATION }}"
-      location: 'eastus'
-      tags:
-        provider: 'Ansible'
-        in_production: "False"
-    when: RG_CREATION is defined
-     
-  - name: Destroy DEMO2 Resource Group
-    azure_rm_resourcegroup:
-      name: "{{ RG_DELETION }}"
-      state: absent
-      force_delete_nonempty: yes
-    when: RG_DELETION is defined
+      name: "{{ item.name }}"
+      location: "{{ item.location | default(omit) }}"
+      tags: "{{ item.tags | default(omit) }}"
+      state: "{{ item.state | default("present") }}
+      force_delete_nonempty: "{{ item.forcedelete | default(omit) }}"
+    loop: "{{ RGs }}"

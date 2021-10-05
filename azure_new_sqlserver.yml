@@ -1,0 +1,16 @@
+---
+- name: Create a new Azure SQL Server
+  hosts: localhost
+  connection: local
+  become: False
+  gather_facts: False
+  
+  tasks:
+  - name: Create/Update/Delete Azure SQL Server
+    azure_rm_sqlserver:
+      resource_group: "{{ item.rg }}"
+      name: "{{ item.name }}"
+      location: "{{ item.location | default(omit) }}"
+      admin_username: "{{ item.credentials.username }}"
+      admin_password: "{{ item.credentials.password }}"
+    loop: "{{ azure_sql_servers }}"

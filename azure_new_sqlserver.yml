@@ -4,7 +4,7 @@
   connection: local
   become: False
   gather_facts: False
-  var_files: 'vaults/sqlvault.yml'
+  vars_files: 'vaults/sqlvault.yml'
   tasks:
   - name: Create/Update/Delete Azure SQL Server
     azure_rm_sqlserver:

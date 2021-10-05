@@ -1,0 +1,19 @@
+---
+- name: Create a new azure network
+  hosts: localhost
+  connection: local
+  become: False
+  gather_facts: False
+  
+  tasks:
+  - name: Create/Update/Delete Azure Network
+    azure_rm_virtualnetwork:
+      resource_group: "{{ item.rg }}"
+      name: "{{ item.name }}"
+      address_prefixes_cidr: "{{ item.prefixes | default(omit) }}"
+      purge_address_prefixes: "{{ item.purge_prefixes | default(omit) }}"
+      purge_dns_servers: "{{ item.purge_dns_servers | default(omit) }}"
+      dns_servers: "{{ item.dns_servers | default(omit) }}"
+      tags: "{{ item.tags | default(omit) }}"
+      state: "{{ item.state | default('present') }}"
+    loop: "{{ virtual_networks }}"

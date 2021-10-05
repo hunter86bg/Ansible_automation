@@ -1,0 +1,16 @@
+---
+- name: Create a new azure group
+  hosts: localhost
+  connection: local
+  become: False
+  gather_facts: False
+  
+  tasks:
+  - name: Create/Update/Verify security group settings
+    azure_rm_securitygroup:
+      name: "{{ item.name }}"
+      resource_group: "{{ item.rg }}"
+      purge_rules: "{{ item.purge_rules | default('no') }}"
+      rules: "{{ item.rules }}"
+      state: "{{ item.state | default(omit) }}"
+    loop: "{{ security_groups }}"

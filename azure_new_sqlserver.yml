@@ -13,4 +13,5 @@
       location: "{{ item.location | default(omit) }}"
       admin_username: "{{ item.credentials.username | default(omit) }}"
       admin_password: "{{ item.credentials.password | default(omit) }}"
+      state: "{{ item.state | default(omit) }}"
     loop: "{{ azure_sql_servers }}"

@@ -11,6 +11,6 @@
       name: "{{ item.name }}"
       resource_group: "{{ item.rg }}"
       purge_rules: "{{ item.purge_rules | default('no') }}"
-      rules: "{{ item.rules }}"
+      rules: "{{ item.rules | default(omit) }}"
       state: "{{ item.state | default(omit) }}"
     loop: "{{ security_groups }}"

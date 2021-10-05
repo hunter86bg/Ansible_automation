@@ -64,3 +64,24 @@ security_groups:
     rg: DEMO_RG2
     state: absent
 ```
+
+# How to use azure_new_sqlserver.yml
+- Create a copy of vaults/sqlvault.yml into the vaults directory
+- Change the username
+- Generate a passowrd via:
+```
+ansible-vault encrypt_string --stdin-name 'password'
+```
+- Remember the vault password
+- Go to towet -> Credentials -> New Credential of type vault and enter the password
+- Attach the new vault (created in the previous step) to 'Azure_SQL_Server' template
+- Launch and when prompted enter the needed variables like:
+```
+azure_sql_servers:
+  - name: uniquesqlserver116
+    rg: DEMO_RG2
+    location: eastus
+  - name: uniquesqlserver222
+    rg: DEMO_RG2
+    state: absent
+```

@@ -18,6 +18,6 @@
       name: "{{ item.name }}"
       location: "{{ item.location | default(omit) }}"
       tags: "{{ item.tags | default(omit) }}"
-      state: "{{ item.state | default("present") }}
+      state: "{{ item.state | default('present') }}"
       force_delete_nonempty: "{{ item.forcedelete | default(omit) }}"
     loop: "{{ RGs }}"

@@ -15,4 +15,5 @@
       enabled_for_template_deployment: "{{ item.enabled_for_templates | default(omit) }}"
       sku: "{{ item.sku | default(omit) }}"
       access_policies: "{{ item.access_policies | default(omit) }}"
+      state: "{{ item.state | default(omit) }}"
     loop: "{{ azure_vaults }}"

@@ -4,17 +4,7 @@
   connection: local
   become: False
   gather_facts: False
-#  vars:
-#    RGs:
-#    - name: "DEMO_RG"
-#      location: "eastus"
-#      tags:
-#        tag1: "anothervalue"
-#        tag2: "somevalue"
-#    - name: "DEMO2"
-#      state: "absent"
-#      forcedelete: "yes"
-    
+  
   tasks:
   - name: Create/Update/Delete Azure RD
     azure_rm_resourcegroup:

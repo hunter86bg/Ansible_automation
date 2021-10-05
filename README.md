@@ -1,6 +1,6 @@
 # Ansible_automation
 
-# How to use azure_rm_new_rs_group playbook:
+# How to use azure_rm_new_rs_group.yml playbook:
 - Start 'Azure_RG_management' template
 - Enter the Resource group details that you want to manage in the following format:
 ```

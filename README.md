@@ -68,12 +68,13 @@ security_groups:
 # How to use azure_new_sqlserver.yml
 - Create a copy of vaults/sqlvault.yml into the vaults directory
 - Change the username
-- Generate a passowrd via:
+- Generate a passowrd and substitute it in the vault file:
 ```
 ansible-vault encrypt_string --stdin-name 'password'
 ```
 - Remember the vault password
-- Go to towet -> Credentials -> New Credential of type vault and enter the password
+- Update the 'vars_file' stanza (azure_new_sqlserver.yml) with the new file (in case you didn't reuse the old one)
+- Go to tower -> Credentials -> New Credential of type vault and enter the password
 - Attach the new vault (created in the previous step) to 'Azure_SQL_Server' template
 - Launch and when prompted enter the needed variables like:
 ```

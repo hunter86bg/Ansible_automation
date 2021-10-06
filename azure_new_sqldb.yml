@@ -15,6 +15,6 @@
       create_mode: "{{ item.create_mode | default('default') }}"
       source_database_id: "{{ item.copy_source | default(omit) }}"
       restorable_dropped_database_id: "{{ item.restore_db_from | default(omit) }}"
-      sku: "{{ item.sku | default(omit) }}"
+      #sku: "{{ item.sku | default(omit) }}"  # Not available in ansible 2.9
       state: "{{ item.state | default(omit) }}"
     loop: "{{ sql_dbs }}"

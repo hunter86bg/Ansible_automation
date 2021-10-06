@@ -14,6 +14,7 @@
       vm_size: "{{ item.vm_size | default('Standard_B1ls')}}"
       availability_set: "{{ item.availability_set | default(omit) }}"
       managed_disk_type: "{{ item.disk_type | default(omit) }}"
+      ssh_password_enabled: no
       admin_username: 'ansible'   ###"{{ credentials.username | default('root') }}"
       ssh_public_keys:
         - path: "/home/ansible/.ssh/authorized_keys"

@@ -86,3 +86,18 @@ azure_sql_servers:
     rg: DEMO_RG2
     state: absent
 ```
+
+# How to use azure_new_sqldb.yml
+- Create a SQL host via azure_new_sqlserver.yml
+- Run Azure_SQL_DB template from Tower with parameters like:
+```
+sql_dbs:
+  - name: newdb
+    rg: DEMO_RG2
+    servername: uniquesqlserver116
+    location: eastus
+  - name: deleteddb
+    rg: DEMO_RG2
+    servername: nonexistingsqldb-randomstring
+    state: absent
+```

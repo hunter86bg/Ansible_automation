@@ -10,7 +10,7 @@
   - name: Create New Instance
     azure_rm_virtualmachine:
       name: "{{ item.name }}"
-      rg: "{{ item.rg }}"
+      resource_group: "{{ item.rg }}"
       vm_size: "{{ item.vm_size | default('B1ls')}}"
       managed_disk_type: "{{ item.disk_type | default(omit) }}"
       admin_username: "{{ credentials.username | default('root') }}"

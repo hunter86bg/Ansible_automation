@@ -7,20 +7,16 @@
   vars_files: 'vaults/sqlvault.yml'
   
   tasks:
-  - name: DEBUg
-    debug:
-      var: item.credentials
-      
   - name: Create New Instance
     azure_rm_virtualmachine:
       name: "{{ item.name }}"
       rg: "{{ item.rg }}"
       vm_size: "{{ item.vm_size | default('B1ls')}}"
       managed_disk_type: "{{ item.disk_type | default(omit) }}"
-      admin_username: "{{ item.credentials.username | default('root') }}"
+      admin_username: "{{ credentials.username | default('root') }}"
       ssh_public_keys:
-        - path: "/home/{{ item.credentials.username | default('root') }}/.ssh/authorized_keys"
-          key_data: "{{ item.credentials.sshkey }}"
+        - path: "/home/{{ credentials.username | default('root') }}/.ssh/authorized_keys"
+          key_data: "{{ credentials.sshkey }}"
       image: "{{ item.image }}"
       state: "{{ item.state | default(omit) }}"
     loop: "{{ azure_vms }}"

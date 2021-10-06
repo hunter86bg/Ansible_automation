@@ -1,0 +1,21 @@
+---
+- name: Create a new azure instance
+  hosts: localhost
+  connection: local
+  become: False
+  gather_facts: False
+  
+  tasks:
+  - name: Create New Instance
+    azure_rm_virtualmachine:
+      name: "{{ item.name }}"
+      rg: "{{ item.rg }}"
+      vm_size: "{{ item.vm_size | default('B1ls')}}"
+      managed_disk_type: "{{ item.disk_type | default(omit) }}"
+      admin_username: "{{ item.credentials.username | default('root') }}"
+      ssh_public_keys:
+        - path: '/home/{{ item.credentials.username | default('root') }}/.ssh/authorized_keys'
+          key_data: "{{ item.credentials.sshkey }}"
+      image: "{{ item.image }}"
+      state: "{{ item.state | default(omit) }}"
+    loop: "{{ azure_vms }}"

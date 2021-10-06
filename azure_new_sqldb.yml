@@ -1,0 +1,20 @@
+---
+- name: Create a new azure sql database
+  hosts: localhost
+  connection: local
+  become: False
+  gather_facts: False
+  
+  tasks:
+  - name: Create/Update/Delete SQL DB
+    azure_rm_sqldatabase:
+      resource_group: "{{ item.rg }}"
+      server_name: "{{ item.servername }}"
+      name: "{{ item.name }}"
+      location: "{{ item.location | default(omit) }}"
+      create_mode: "{{ item.create_mode | default('default') }}"
+      source_database_id: "{{ item.copy_source | default(omit) }}"
+      restorable_dropped_database_id: "{{ item.restore_db_from | default(omit) }}"
+      sku: "{{ item.sku | default(omit) }}"
+      state: "{{ item.state | default(omit) }}"
+    loop: "{{ sql_dbs }}"

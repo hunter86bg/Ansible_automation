@@ -13,4 +13,5 @@
       type: "{{ item.type | default(omit) }}"
       tags: "{{ item.tags | default(omit) }}"
       blob_cors: "{{ item.blobcors | default(omit) }}"
+      state: "{{ item.state | default(omit) }}"
     loop: "{{ azure_storageaccounts }}"

@@ -18,7 +18,7 @@
       ssh_public_keys:
         - path: "/home/{{ credentials.username | default('root') }}/.ssh/authorized_keys"
           key_data: "{{ credentials.sshkey }}"
-      image: "{{ item.image }}"
+      image: "{{ item.image | default(omit) }}"
       subnet_name: "{{ item.subnet_name | default(omit) }}"
       state: "{{ item.state | default(omit) }}"
     loop: "{{ azure_vms }}"

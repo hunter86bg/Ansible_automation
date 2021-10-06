@@ -1,0 +1,16 @@
+---
+- name: Create a new azure storage account
+  hosts: localhost
+  connection: local
+  become: False
+  gather_facts: False
+  
+  tasks:
+  - name: Create/Update/Delete Azure Storage Account
+    azure_rm_storageaccount:
+      name: "{{ item.name }}"
+      resource_group: "{{ item.rg }}"
+      type: "{{ item.type | default(omit) }}"
+      tags: "{{ item.tags | default(omit) }}"
+      blob_cors: "{{ item.blobcors | default(omit) }}"
+    loop: "{{ azure_storageaccounts }}"

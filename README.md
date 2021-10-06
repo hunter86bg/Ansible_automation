@@ -117,3 +117,36 @@ azure_storageaccounts:
     rg: "DEMO_RG2"
     state: absent
 ```
+
+# How to use azure_create_vm.yml
+- Create an ssh key (or use existing one) via:
+```
+ cat demokey.pub  | ansible-vault encrypt_string --stdin-name sshkey
+```
+- Create a new vault or use existing one
+- Create a secret in Ansible tower with the password used to encrypt the ssh key
+- Replace the secret (if using a new one) in the Azure_VMs template in Tower
+- Run the template Azure_VMs with parameters similar to those:
+
+```
+azure_vms:
+  - name: vm1
+    rg: DEMO_RG2
+    managed_disk_type: Standard_LRS
+    subnet_name: subnet1
+    image:
+      offer: RHEL
+      publisher: RedHat
+      sku: '8_4'
+      version: 8.4.2021081003
+  - name: vm2defaults
+    rg: DEMO_RG2
+    image:
+      offer: RHEL
+      publisher: RedHat
+      sku: '8_4'
+      version: 8.4.2021081003
+  - name: notexistingvm
+    rg: DEMO_RG2
+    state: absent
+```

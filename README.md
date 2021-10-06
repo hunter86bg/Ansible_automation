@@ -101,3 +101,19 @@ sql_dbs:
     servername: nonexistingsqldb-randomstring
     state: absent
 ```
+
+# How to use azure_new_storageaccount.yml
+- Run Azure_Storage_acc from Tower with similar parameters (tags must be in quotes, storage account can have lowercase letters and numbers):
+```
+---
+azure_storageaccounts:
+  - name: "createme121"
+    rg: "DEMO_RG2"
+    type: "Standard_RAGRS"
+    tags:
+      staging: "nonprod"
+      demo: "true"
+  - name: "deleteme121"
+    rg: "DEMO_RG2"
+    state: absent
+```

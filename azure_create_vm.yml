@@ -4,6 +4,7 @@
   connection: local
   become: False
   gather_facts: False
+  vars_files: 'vaults/sqlvault.yml'
   
   tasks:
   - name: Create New Instance

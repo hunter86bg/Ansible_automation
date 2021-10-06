@@ -16,7 +16,7 @@
       managed_disk_type: "{{ item.disk_type | default(omit) }}"
       admin_username: 'ansible'   ###"{{ credentials.username | default('root') }}"
       ssh_public_keys:
-        - path: "/home/{{ credentials.username | default('root') }}/.ssh/authorized_keys"
+        - path: "/home/ansible/.ssh/authorized_keys"
           key_data: "{{ credentials.sshkey }}"
       image: "{{ item.image | default(omit) }}"
       subnet_name: "{{ item.subnet_name | default(omit) }}"

@@ -7,6 +7,10 @@
   vars_files: 'vaults/sqlvault.yml'
   
   tasks:
+  - name: DEBUg
+    debug:
+      var: item.credentials
+      
   - name: Create New Instance
     azure_rm_virtualmachine:
       name: "{{ item.name }}"

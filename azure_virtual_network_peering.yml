@@ -18,6 +18,7 @@
       state: "{{ item.state | default(omit) }}"
     register: status
     loop: "{{ azure_virtual_network_peerings }}"
+    ignore_errors: true
 
   - name: DEBUG
     debug:

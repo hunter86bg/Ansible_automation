@@ -25,4 +25,5 @@
           key_data: "{{ credentials.sshkey }}"
       image: "{{ item.image | default(omit) }}"
       managed_disk_type: "{{ item.disk_type | default(omit) }}"
+      state: "{{ item.state | default(omit) }}"
     loop: "{{ azure_availability_set }}"

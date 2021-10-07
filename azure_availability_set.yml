@@ -1,0 +1,28 @@
+---
+- name: Create a new azure scaleset
+  hosts: localhost
+  connection: local
+  become: False
+  gather_facts: False
+  vars_files: 'vaults/sqlvault.yml'
+  
+  tasks:
+  - name: Create/Update/Remove Azure VM Scaleset
+    azure_rm_virtualmachinescaleset:
+      name: "{{ item.name }}"
+      resource_group: "{{ item.rg }}"
+      vm_size: "{{ item.vm_size | default('Standard_B1ls')}}"
+      capacity: "{{ item.capacity | default('1') }}"
+      virtual_network: "{{ item.vm_network | default(omit) }}"
+      subnet_name: "{{ item.subnet_name | default(omit) }}"
+      upgrade_policy: "{{ item.upgrade_policy | default('Automatic') }}"
+      #terminate_event_timeout_minutes: "{{ item.terminate_timeout | default('15') }}" # Not Available in ansible 2.9
+      #scale_in_policy: "{{ item.scale_in_policy | default('NewestVM') }}" #Not Available in Ansible 2.9
+      admin_username: 'ansible'
+      ssh_password_enabled: no 
+      ssh_public_keys:
+        - path: "/home/ansible/.ssh/authorized_keys"
+          key_data: "{{ credentials.sshkey }}"
+      image: "{{ item.image | default(omit) }}"
+      managed_disk_type: "{{ item.disk_type | default(omit) }}"
+    loop: "{{ azure_availability_set }}"

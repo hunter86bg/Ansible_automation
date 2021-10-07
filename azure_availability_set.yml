@@ -13,7 +13,7 @@
       resource_group: "{{ item.rg }}"
       vm_size: "{{ item.vm_size | default('Standard_B1ls')}}"
       capacity: "{{ item.capacity | default('1') }}"
-      virtual_network: "{{ item.vm_network | default(omit) }}"
+      virtual_network_name: "{{ item.vm_network | default(omit) }}"
       subnet_name: "{{ item.subnet_name | default(omit) }}"
       upgrade_policy: "{{ item.upgrade_policy | default('Automatic') }}"
       #terminate_event_timeout_minutes: "{{ item.terminate_timeout | default('15') }}" # Not Available in ansible 2.9

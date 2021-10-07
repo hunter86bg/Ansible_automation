@@ -171,3 +171,24 @@ azure_availability_set:
     rg: "DEMO_RG2"
     state: "absent"
 ```
+
+# How to use azure_virtual_network_peering.yml
+- Ensure that the 2 virtual networks exist and ansible has priviledges over the 2 Resource Groups
+- Run Azure_Virtual_network_peerings template from tower in order to "link" the 2 virtual networks via:
+```
+---
+azure_virtual_network_peerings:
+  - name: "virtnetpeering1"
+    rg: "DEMO_RG2"
+    vm_network: "scalesetvnet1"
+    remote_virtual_network:
+      resource_group: "DEMO_RG"
+      name: "peering1"
+    allow_virt_net_access: false
+    allow_forwarded_traffic: true
+    # Deletion example
+  - name: "peeringthatdoesntexist"
+    rg: "DEMO_RG"
+    vm_network: "notexistingone"
+    state: absent
+```

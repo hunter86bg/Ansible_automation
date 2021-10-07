@@ -150,3 +150,24 @@ azure_vms:
     rg: DEMO_RG2
     state: absent
 ```
+
+# How to use azure_availability_set.yml
+- Verify that there are enough CPU quotas. If the quotas have been exceeded the module errors out with a traceback (debugging nightmare)
+- Next run Azure_VM_SCALESET template from Tower with similar extra vars:
+```
+azure_availability_set:
+  - name: "scaleset1"
+    rg: "DEMO_RG2"
+    disk_type: "Standard_LRS"
+    vm_network: "scalesetvnet1"
+    subnet_name: "scalesetsubnet1"
+    image:
+      offer: "RHEL"
+      publisher: "RedHat"
+      sku: "82gen2"
+      version: "8.2.2021091102"
+    capacity: "5"
+  - name: "scalesetunique2"
+    rg: "DEMO_RG2"
+    state: "absent"
+```

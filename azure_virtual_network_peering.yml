@@ -16,4 +16,9 @@
       allow_virtual_network_access: "{{ item.allow_virt_net_access | default(omit) }}"
       allow_forwarded_traffic: "{{ item.allow_forwarded_traffic | default(omit) }}"
       state: "{{ item.state | default(omit) }}"
+    register: status
     loop: "{{ azure_virtual_network_peerings }}"
+
+  - name: DEBUG
+    debug:
+      var: status

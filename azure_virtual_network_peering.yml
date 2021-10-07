@@ -1,0 +1,19 @@
+---
+- name: Create a new azure Virtual Network Peering
+  hosts: localhost
+  connection: local
+  become: False
+  gather_facts: False
+  #vars_files: 'vaults/sqlvault.yml'
+  
+  tasks:
+  - name: Create/Update/Delete Network Peering
+    azure_rm_virtualnetworkpeering:
+      name: "{{ item.name }}"
+      resource_group: "{{ item.rg }}"
+      virtual_network: "{{ item.vm_network | default(omit) }}"
+      remote_virtual_network: "{{ item.remote_virtual_network | default(omit) }}"
+      allow_virtual_network_access: "{{ item.allow_virt_net_access | default(omit) }}"
+      allow_forwarded_traffic: "{{ item.allow_forwarded_traffic | default(omit) }}"
+      state: "{{ item.state | default(omit) }}"
+    loop: "{{ azure_virtual_network_peerings }}"
